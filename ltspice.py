@@ -20,12 +20,11 @@ def step_import(file_name: str):
                          Ex.: 'dados.txt'
 
     Returns:
-        final_table_list (TYPE): Lista de arrays com os dados separados por "step".
+        final_table_list (list): Lista de arrays com os dados separados por "step".
     """
     with open(file_name, 'r') as file:
         final_table_list = []
         temp_table_data = []
-        table_count = 0
         valid_line = False
         
         for line in file:
@@ -40,7 +39,6 @@ def step_import(file_name: str):
                 if valid_line:
                     final_table_list.append(np.vstack(temp_table_data))
                     temp_table_data = []
-                    table_count += 1
                 valid_line = False
                 
         final_table_list.append(np.vstack(temp_table_data))
