@@ -3,7 +3,6 @@ Funções de teste de algoritmos de otimização.
 """
 
 import numpy as np
-from beecolpy import abc
 
 
 def nan_sphere(x):
