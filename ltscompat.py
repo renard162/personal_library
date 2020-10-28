@@ -10,17 +10,20 @@ def step_import(file_name: str):
     passo em uma lista independente, organizando os dados em uma lista de
     matrizes (arrays).
     
-    Obs.: Esta versão da função utiliza uma versão do "numpy.fromstring" que
-          gera um DeprecationWarning, em versões futuras do numpy, quando o
-          "numpy.fromstring" gerar um Exception, será necessário atualizar
-          esta função.
+    Obs.:
+        Esta versão da função utiliza uma versão do "numpy.fromstring" que
+        gera um DeprecationWarning, em versões futuras do numpy, quando o
+        "numpy.fromstring" gerar um Exception, será necessário atualizar esta
+        função.
     
     Args:
-        file_name (str): Nome do arquivo com os dados a serem importados.
-                         Ex.: 'dados.txt'
+        file_name (str): 
+            Nome do arquivo com os dados a serem importados. 
+            Ex.: 'dados.txt'
 
     Returns:
-        final_table_list (list): Lista de arrays com os dados separados por "step".
+        final_table_list (list):
+            Lista de arrays com os dados separados por "step".
     """
     with open(file_name, 'r') as file:
         final_table_list = []

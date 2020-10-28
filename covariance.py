@@ -11,8 +11,8 @@ def normalized_covariance(x, y):
     Função utilizada para melhorar a legibilidade dos códigos.
     
     A função numpy.corrcoef(x,y) retorna a matriz de correlação:
-        [Cii Cij]
-        [Cji Cjj]
+        [[Cii Cij]
+        [Cji Cjj]]
     O que força a se tomar um dos valores da anti-diagonal para se obter o
     valor da covariância entre os dois conjuntos de dados.
     
