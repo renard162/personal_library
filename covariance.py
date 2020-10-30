@@ -102,10 +102,10 @@ def correlation(y, u=None, confidence_level=0.95):
         t_0 = 0
     
     #Função de correlação adotada pelo Billings:
-    # Considerando-se x_m e y_m como a média de x e y respectivamente:
-    # np.correlate(x_temp, y_temp) = sum_k{(x(k) - x_m)*(y(k+t) - y_m)}
-    # Assim, np.correlate(x_temp, y_temp)/len(x) = covariância(x(k), y(k+t))
-    # Normaliza-se com sqrt(variância(x) * variância(y))
+    #Considerando-se x_m e y_m como a média de x e y respectivamente:
+    #np.correlate(x_temp, y_temp) = sum_k{(x(k) - x_m)*(y(k+t) - y_m)}
+    #Assim, np.correlate(x_temp, y_temp)/len(x) = covariância(x(k), y(k+t))
+    #Normaliza-se com sqrt(variância(x) * variância(y))
     ryu = np.correlate(y_temp, u_temp, mode='full') / \
         (np.sqrt(np.var(y)*np.var(u))*len(y))
     
