@@ -16,7 +16,7 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
             Nome do arquivo que será criado ou sobrescrito.
             Ex.: 'arquivo.txt'
             
-        *lists (1D-Lists ou 1D-arrays):
+        *lists (1D-lists ou 1D-arrays):
             Listas ou arrays que formarão as colunas do arquivo de saída.
             Múltiplas listas ou arrays podem ser fornecidas desde que todas
             possuam o mesmo número de elementos.
@@ -48,6 +48,8 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
             Valores válidos são:
                 - 'sci' -> Padrão científico (1,000E00).
                 - 'dec' -> Padrão decimal (1,000).
+                - Qualquer string diferente das anteriores farão os dados 
+                  numéricos serem salvos como o padrão do python.
                 
         precision (int, optional): Defaults to 10.
             Número de casas decimais utilizados em dados numéricos.
@@ -60,7 +62,7 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
             
         Deseja-se salvar estes dados em arquivo CSV chamado "dados.csv" para
         utilizar em Excel Pt-Br com os títulos "Corrente de entrada" e
-        "Tensão de saída", define-se os títulos:
+        "Tensão de saída", assim, define-se os títulos:
             titulos = ['Corrente de entrada', 'Tensão de saída']
             
         Aplica-se estes valores na função:
@@ -92,13 +94,15 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
                 str_format = '{:.' + str(precision)
                 if (number_format == 'sci'):
                     str_format += 'E}'
-                else:
+                elif (number_format == 'dec'):
                     str_format += 'f}'
+                else: #Vetores numéricos tratados como vetores genéricos
+                    raise Exception()
                 
                 temp_data = [str_format.format(x).replace('.', decimal_digit) \
                              for x in data]
                 
-            except: #Vetor não numérico
+            except: #Vetor genérico
                 temp_data = [str(x) for x in data]
             
             finally:

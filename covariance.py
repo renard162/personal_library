@@ -30,6 +30,7 @@ def normalized_covariance(x, y):
     Returns:
         float:
             Covariância normalizada entre "x" e "y".
+            Também conhecido como coeficiente de correlação de Pearson.
 
     """
     return np.corrcoef(x, y)[0,1]
@@ -72,10 +73,10 @@ def correlation(y, u=None, confidence_level=0.95):
             No caso da Correlação cruzada, atrasos negativos representam
             atraso em "y" e atrasos positivos representam atrasos em "u".
             
-        superior_limit (float):
+        limit_superior (float):
             Limite superior do intervalo de confiança.
             
-        inferior_limit (float):
+        limit_inferior (float):
             Limite inferior do intervalo de confiança.
 
     """
@@ -100,7 +101,11 @@ def correlation(y, u=None, confidence_level=0.95):
         u_temp = u - np.mean(u)
         t_0 = 0
     
-    #Função de correlação adotada pelo Billings
+    #Função de correlação adotada pelo Billings:
+    # Considerando-se x_m e y_m como a média de x e y respectivamente:
+    # np.correlate(x_temp, y_temp) = sum_k{(x(k) - x_m)*(y(k+t) - y_m)}
+    # Assim, np.correlate(x_temp, y_temp)/len(x) = covariância(x(k), y(k+t))
+    # Normaliza-se com sqrt(variância(x) * variância(y))
     ryu = np.correlate(y_temp, u_temp, mode='full') / \
         (np.sqrt(np.var(y)*np.var(u))*len(y))
     

@@ -10,9 +10,15 @@ def step_import(file_name: str):
     passo em uma lista independente, organizando os dados em uma lista de
     matrizes (arrays).
     
+    Como cada "step" pode gerar números diferentes de pontos experimentais,
+    são geradas listas de 2D-arrays e não simplesmente 3D-arrays.
+    
+    Caso não seja utilizada a função "step" do LtSpice, a lista resultante
+    desta função possuirá apenas um array.
+    
     Obs.:
         Esta versão da função utiliza uma versão do "numpy.fromstring" que
-        gera um DeprecationWarning, em versões futuras do numpy, quando o
+        gera um DeprecationWarning. Em versões futuras do numpy, quando o
         "numpy.fromstring" gerar um Exception, será necessário atualizar esta
         função.
     
@@ -33,8 +39,9 @@ def step_import(file_name: str):
         for line in file:
             line_data = np.fromstring(line, dtype=float, sep='\t')
             
-            #Quando "numpy.fromstring" gerar exception, substituir o "if" "else"
-            #por "try" "except".
+            #Quando "numpy.fromstring" gerar exception, substituir o
+            #"if" "else" por "try" "except" e colocar a atribuição de
+            #"line_data" dentro do "try".
             if (len(line_data) > 0):
                 valid_line = True
                 temp_table_data.append(line_data)

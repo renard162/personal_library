@@ -1,9 +1,20 @@
 """
 Funções de teste de algoritmos de otimização.
+Mais funções disponíveis em:
+https://www.sfu.ca/~ssurjano/optimization.html
+
+Funções disponíveis:
+    - nan_sphere(x)
+    - constant(x)
+    - sphere(x)
+    - rastrigin(x)
+    - rosenbrock(x)
+    - holder(x)
+    - crossintray(x)
+    - styblinski_tang(x)
 """
-
+# %%
 import numpy as np
-
 
 def nan_sphere(x):
     #Sphere function with negative domain as NaN
