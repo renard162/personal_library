@@ -129,7 +129,7 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
         try: #Vetor numérico
             str_format = '{:.' + str(precision)
             if (number_format == 'sci'):
-                str_format += 'E}'
+                str_format += 'e}'
             elif (number_format == 'dec'):
                 str_format += 'f}'
             else: #Vetores numéricos tratados como vetores genéricos
