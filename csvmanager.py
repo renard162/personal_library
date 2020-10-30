@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 # %%
+"""
+Funções para manipular arquivos de texto contendo dados.
+"""
 import numpy as np
 import csv
 
@@ -81,20 +84,18 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
     for data in lists:
         if (len(data) != validation):
             raise Exception('Todos os vetores de dados devem ter o mesmo tamanho!')
+            
         else:
             try: #Vetor numérico
                 data = np.array(data, dtype=float)
                 
-                output_format = '{:.' + str(precision)
+                str_format = '{:.' + str(precision)
                 if (number_format == 'sci'):
-                    output_format += 'E}'
-                elif (number_format == 'dec'):
-                    output_format += 'f}'
+                    str_format += 'E}'
                 else:
-                    raise Exception('Formato de número inválido. '\
-                                    'Formatos válidos: \'sci\' ou \'dec\'')
+                    str_format += 'f}'
                 
-                temp_data = [output_format.format(x).replace('.',decimal_digit) \
+                temp_data = [str_format.format(x).replace('.', decimal_digit) \
                              for x in data]
                 
             except: #Vetor não numérico
