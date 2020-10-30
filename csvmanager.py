@@ -104,17 +104,17 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
     if (titles != None):
         if (np.sum([isinstance(x, str) for x in titles]) != len(titles)):
             raise Exception('Todos os títulos devem ser Strings!')
-            
+
         if (len(titles) != len(lists)):
             raise Exception('O número de títulos é diferente do número de '\
                             'listas fornecidas!')
-                
+
     #Checagem de conflito entre separador decimal e delimitador de colunas.
     if (separator == decimal_digit):
         raise Exception('O caractere delimitador de colunas \'separator\' '\
                         'deve ser diferente do caractere separador decimal '\
                         '\'decimal_digit\'!')
-    
+
     #Como é esperado que o número de amostras seja muito, muito maior que o
     #número de listas, excutar a checagem da validade das listas antes de
     #processar seus elementos aumenta o desempenho do código.
@@ -122,38 +122,42 @@ def csv_export(file_name, *lists, titles=None, separator='\t',
     for data in lists:
         if (len(data) != data_length):
             raise Exception('Todos os vetores de dados devem ter o mesmo tamanho!')
-    
+
     #Montagem da matriz de dados
+    str_format = '{:.' + str(precision)
+    if (number_format == 'sci'):
+        str_format += 'e}'
+    elif (number_format == 'dec'):
+        str_format += 'f}'
+    else: #Vetores numéricos tratados como vetores genéricos
+        str_format = 'generic'
+
     data_matrix = []
+
     for data in lists:
         try: #Vetor numérico
-            str_format = '{:.' + str(precision)
-            if (number_format == 'sci'):
-                str_format += 'e}'
-            elif (number_format == 'dec'):
-                str_format += 'f}'
-            else: #Vetores numéricos tratados como vetores genéricos
+            if (str_format == 'generic'):
                 raise Exception()
-                
             data = np.array(data, dtype=float)
-            
             temp_data = [str_format.format(x).replace('.', decimal_digit) \
                          for x in data]
-            
+
         except: #Vetor genérico
             temp_data = [str(x) for x in data]
-        
-        finally:
+
+        finally: #Finalmente mesmo.... ufa
             data_matrix.append(temp_data)
-    
+
     data_matrix = np.array(data_matrix).T.tolist()
 
     #Escrita no arquivo
+    #Depois de tanto malabarismo para ajustar os dados e fazer os dumb checks,
+    #já estava na hora de finalmente fazer o que a função deve fazer...
     with open(file_name, 'w', newline='') as file:
         writer = csv.writer(file, delimiter=separator)
-        
+
         if (titles != None):
             writer.writerow(titles)
-        
+
         for line in data_matrix:
             writer.writerow(line)
