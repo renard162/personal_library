@@ -34,7 +34,7 @@ def signed_bin2int(b):
 
 def bin2int_list(b, variables_count):
     if ((len(b) % variables_count) != 0):
-        raise Exception('Insuficient bits!')
+        raise Exception('Insufficient bits!')
     bits_per_var = len(b)/variables_count
     output_list = []
     final = int(0)
