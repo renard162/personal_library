@@ -4,17 +4,45 @@ Mais funções disponíveis em:
 https://www.sfu.ca/~ssurjano/optimization.html
 
 Funções disponíveis:
-    - nan_sphere(x)
-    - constant(x)
-    - sphere(x)
-    - rastrigin(x)
-    - rosenbrock(x)
-    - holder(x)
-    - crossintray(x)
-    - styblinski_tang(x)
+    Funções de conversão Binário -> Inteiro:
+        - bin2int: y = sum(b_n * 2^n)
+        - signed_bin2int: y = ((-1)^b_0) * bin2int(b_1...b_n)
+        - bin2int_list: y = [signed_bin2int(b_0...b_n), ..., signed_bin2int(b_h...b_N)]
+
+    Funções de teste em domínio contínuo:
+        - nan_sphere(x): y=f(x_1...x_n) com NaN para todo x_n<0
+        - constant(x): y=-1 para todo x_n
+        - sphere(x): y=f(x_1...x_n)
+        - rastrigin(x): y=f(x_1...x_n)
+        - rosenbrock(x): y=f(x_1...x_n)
+        - holder(x): y=f(x_1...x_n)
+        - crossintray(x): y=f(x_1...x_n)
+        - styblinski_tang(x): y=f(x_1...x_n)
 """
 # %%
 import numpy as np
+import math as mt
+
+#---------------------------------------
+#Funções para testar algoritmos de otimização binários
+def bin2int(b):
+    return int(sum([mt.pow(2,x)*b[::-1][x] for x in range(len(b))]))
+
+def signed_bin2int(b):
+    return int(bin2int(b[1:])*(mt.pow(-1,b[0]*(-1))))
+
+def bin2int_list(b, variables_count):
+    if ((len(b) % variables_count) != 0):
+        raise Exception('Insuficient bits!')
+    bits_per_var = len(b)/variables_count
+    output_list = []
+    final = int(0)
+    for i in range(1,variables_count+1):
+        init = final
+        final += int(bits_per_var)
+        output_list.append(signed_bin2int(b[init:final]))
+    return output_list
+#---------------------------------------
 
 def nan_sphere(x):
     #Sphere function with negative domain as NaN
