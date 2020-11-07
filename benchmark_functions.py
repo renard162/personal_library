@@ -10,6 +10,7 @@ Funções disponíveis:
         - bin2int_list: y = [signed_bin2int(b_0...b_n), ..., signed_bin2int(b_h...b_N)]
 
     Funções de teste em domínio contínuo:
+        - full_nan: y = NaN para todo x_n
         - nan_sphere(x): y = f(x_1...x_n) com NaN para todo x_n<0
         - constant(x): y = -1 para todo x_n
         - sphere(x): y = f(x_1...x_n)
@@ -43,6 +44,10 @@ def bin2int_list(b, variables_count):
         output_list.append(signed_bin2int(b[init:final]))
     return output_list
 #---------------------------------------
+
+def full_nan(x):
+    #Gerador de NaNs
+    return np.nan
 
 def nan_sphere(x):
     #Sphere function with negative domain as NaN
