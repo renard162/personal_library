@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# %%
 """
 Funções de teste de algoritmos de otimização.
 Mais funções disponíveis em:

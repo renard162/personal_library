@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# %%
 
 def partitions(value, positions, depth=0):
     """

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# %%
 """
 Funções para análise de covariância entre séries de dados e correlação entre
 séries temporais.

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # %%
 """
 Pacote com funções para compatibilizar os arquivos de saída do LtSpice com o Python.

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# %%
 """
 Funções para operações com intervalos do tipo ivmpf (mpmath).
 """
