@@ -7,20 +7,25 @@ https://www.sfu.ca/~ssurjano/optimization.html
 
 Funções disponíveis:
     Funções de conversão Binário -> Inteiro:
-        - bin2int: y = sum(b_n * 2^n)
-        - signed_bin2int: y = ((-1)^b_0) * bin2int(b_1...b_n)
-        - bin2int_list: y = [signed_bin2int(b_0...b_n), ..., signed_bin2int(b_h...b_N)]
+        - bin2int: 
+            x = sum(b_n * 2^n)
+            
+        - signed_bin2int: 
+            x = ((-1)^b_0) * bin2int(b_1...b_n)
+            
+        - bin2int_list: 
+            x = [signed_bin2int(b_0...b_n), ..., signed_bin2int(b_h...b_N)]
 
     Funções de teste em domínio contínuo:
         - full_nan: y = NaN para todo x_n
-        - nan_sphere(x): y = f(x_1...x_n) com NaN para todo x_n<0
-        - constant(x): y = -1 para todo x_n
-        - sphere(x): y = f(x_1...x_n)
-        - rastrigin(x): y = f(x_1...x_n)
-        - rosenbrock(x): y = f(x_1...x_n)
-        - holder(x): y = f(x_1...x_n)
-        - crossintray(x): y = f(x_1...x_n)
-        - styblinski_tang(x): y = f(x_1...x_n)
+        - nan_sphere([x_1...x_n]): y = f(x_1...x_n) com NaN para todo x_n<0
+        - constant([x_1...x_n]): y = -1 para todo x_n
+        - sphere([x_1...x_n]): y = f(x_1...x_n)
+        - rastrigin([x_1...x_n]): y = f(x_1...x_n)
+        - rosenbrock([x_1...x_n]): y = f(x_1...x_n)
+        - holder([x_1...x_n]): y = f(x_1...x_n)
+        - crossintray([x_1...x_n]): y = f(x_1...x_n)
+        - styblinski_tang([x_1...x_n]): y = f(x_1...x_n)
 """
 # %%
 import numpy as np

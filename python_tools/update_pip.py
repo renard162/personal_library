@@ -33,6 +33,7 @@ with open('pip_update.log', 'w', newline='') as file:
         for pack in tqdm(packages[packages[:,2]=='pypi_0'],\
                           desc='PIP update', ascii=True):
             log = os.popen('pip install -U ' + pack[0]).read()
+            print(log)
             csvwrite.writerow([pack[0], log])
 
     except:
