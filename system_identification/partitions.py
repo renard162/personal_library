@@ -33,4 +33,11 @@ def partitions(value, positions, depth=0):
         for i in range(value+1)
         for item in partitions(value-i, positions, depth=depth+1)
         ]
-        
+
+
+
+if (__name__ == '__main__'):
+    import numpy as np
+    data = partitions(value=3,
+                      positions=5)
+    print('\nPartition de 3 em 5 posições:\n{}'.format(np.matrix(data)))
