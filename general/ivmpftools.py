@@ -22,7 +22,7 @@ def ivmpf_disassembler(ivmpf):
         TYPE: Array de mp.mpf.
             - 1D-array = [<inferior>, <superior>]
               caso seja fornecido "iv.mpf".
-              
+
             - 2D-array = [[<inferior_0>, <superior_0>] ... [<inferior_n>, <superior_n>]]
               caso seja fornecido [<iv.mpf>, ..., <iv.mpf>].
     """
@@ -36,4 +36,3 @@ def ivmpf_disassembler(ivmpf):
         ivmpf = str(ivmpf)[1:-1].replace(' ','')
         sep_position = ivmpf.find(',')
         return np.array([mp.mpf(ivmpf[:sep_position]), mp.mpf(ivmpf[sep_position+1:])])
-
