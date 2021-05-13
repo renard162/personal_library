@@ -77,7 +77,7 @@ def sphere(x):
     for i in range(len(x)):
         total += x[i]**2
     return total
-	
+
 def rastrigin(x):
     #Rastringin function
 	return 10*len(x) + sum([(xi**2 - 10 * np.cos(2 * np.pi * xi)) for xi in x])
@@ -115,4 +115,3 @@ def styblinski_tang(x):
     for i in range(len(x)):
         total += (x[i]**4) - (16*x[i]**2) + (5*x[i])
     return total/2
-

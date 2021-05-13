@@ -44,4 +44,3 @@ with open('pip_update.log', 'w', newline='') as file:
         time.sleep(1)
         log = ['Log File', 'Finished']
         csvwrite.writerow(log)
-
